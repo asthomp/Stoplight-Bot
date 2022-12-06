@@ -9,7 +9,7 @@ import sys
 # Description: Reboots a given bot when prompted by an authorized user.
 async def reboot_bots(ctx, bot):
     bot = bot.capitalize()
-    if await authorize_user(ctx.message.author):
+    if authorize_user(ctx.message.author):
         print(f"{ctx.message.author} rebooted {bot}.")
         await ctx.send(f" :computer:  {bot} is rebooting.")
         os.execv(sys.executable, ["git pull"])
@@ -21,7 +21,7 @@ async def reboot_bots(ctx, bot):
 
 # == USER MANAGEMENT ==
 # Description: Given a user object, returns true if the user is an administrator (or the developer).
-async def authorize_user(user):
+def authorize_user(user):
     if user.id == os.getenv('DEV_ID') or user.guild_permissions.administrator:
         return True
     else:
