@@ -1,0 +1,19 @@
+#.gitignore cheat sheet:
+# .gitignore files tell Git which files should not be added to a given commit. There are some exceptions.
+# . is part of a filename that starts with a .; it is not a special character. The dot means that your desktop environment should hide that file.
+# If the name has no /, it means gitignore will ignore all things with that name - files or directories, regardless of location.
+# If you put a / at the end of the name, it will ignore a single directory whose path starts with the current directory of the gitignore file.
+# / at the front references the location of the gitignore file; in front of a name, it will only consider this level for that name.
+
+venv/
+.idea/
+.DS_Store
+DS_Store
+*.pyc
+*.gif
+*.jpg
+*.png
+
+/tests/
+
+.env
