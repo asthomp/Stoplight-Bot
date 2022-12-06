@@ -14,7 +14,7 @@ async def reboot_bots(ctx, bot):
         await ctx.send(f" :computer:  {bot} is rebooting.")
         print("git pull")
         os.system("git pull")
-        print("python3 {sys.argv[0]}")
+        print(f"python3 {sys.argv[0]}")
         os.system(f"python3 {sys.argv[0]}")
     else:
         await ctx.send(
