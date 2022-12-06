@@ -13,7 +13,7 @@ async def reboot_bots(ctx, bot):
         print(f"{ctx.message.author} rebooted {bot}.")
         await ctx.send(f" :computer:  {bot} is rebooting.")
         os.system("git pull")
-        os.system(f"python3 {sys.argv}")
+        os.system(f"python3 {sys.argv[0]}")
     else:
         await ctx.send(
             f" :computer:  Only admins can reboot {bot}!")
