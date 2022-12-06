@@ -88,7 +88,7 @@ async def stoplight(ctx, guild_config, key):
         admin_message = get_config(ctx, guild_config, key, "admin_message")
         if len(admin_message) > 0:
             try:
-                await ctx.guild.get_channel(guild_config[ctx.guild.id]["admin_channel"]).send({admin_message})
+                await ctx.guild.get_channel(guild_config[ctx.guild.id]["admin_channel"]).send(admin_message)
             except Exception as err:
                 print(err)
     # Deletes the message the user sent
