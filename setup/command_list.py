@@ -7,7 +7,7 @@ def command_list(ctx, admin, bot_name):
                     f"Ping bots with `{bot_name} ping`\n" \
                     f"List commands with `{bot_name} commands`\n\n" \
                     f"**Conversational Triggers**:\n" \
-                    f"The bot can respond to some natural speech. Here are some examples:\n" \
+                    f"The bot can respond to some natural speech. Here are some examples:\n\n" \
                     f">Hi / Hello / Hey {bot_name.capitalize()}.\n" \
                     f">What's up, {bot_name.capitalize()}?\n" \
                     f">How\'s your day going, {bot_name.capitalize()}.\n" \
