@@ -17,7 +17,7 @@ def command_list(ctx, admin, bot_name):
                     f"> \t\tIf you\'re good-to-go, use `{bot_name} green`\n" \
                     f"> \t\tIf everyone should proceed with caution, use `{bot_name} yellow`\n" \
                     f"> \t\tIf the conversation should stop, use `{bot_name} red`"
-    admin_commands = f"\n\n**ADMIN Commands**:\n\n" \
+    admin_commands = f"\n\n**ADMIN ONLY Commands**:\n\n" \
                      f"> \t\tReboot bot with `{bot_name} reboot`\n\n"
     tail = f"🟢\t 🟡\t🔴\n"
 
