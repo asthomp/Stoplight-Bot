@@ -22,11 +22,16 @@ bot_key = phrases.key
 # Load client
 client = commands.Bot(command_prefix=phrases.prefixes, intents=intents)
 
+# Slash Command Tree
+tree = discord.app_commands.CommandTree(client)
+
 
 # Wake up bot!
 @client.event
-async def on_ready():
+async def on_ready(ctx):
+    print(ctx)
     print(f'{bot_key.capitalize()} just woke up.')
+    await tree.sync(guild=discord.Object(id=ctx.guild.id))
     change_status.start()
 
 
@@ -98,13 +103,17 @@ async def stoplight(ctx, guild_config, key):
                 await ctx.guild.get_channel(guild_config[ctx.guild.id]["admin_channel"]).send(admin_message)
             except Exception as err:
                 print(err)
-    # Deletes the message the user sent
-    await ctx.message.delete()
 
 
 @client.command(no_pm=True)
 @has_permissions(send_messages=True)
 async def green(ctx):
+    await stoplight(ctx, config.guild_config, "green")
+    await ctx.message.delete()
+
+
+@tree.command(name="green", description="You are good-to-go.")
+async def _green(ctx):
     await stoplight(ctx, config.guild_config, "green")
 
 
