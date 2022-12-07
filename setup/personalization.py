@@ -17,10 +17,10 @@ ping = "Shall we discuss terms?"
 # Sample Bot Description
 # This string can be used in the 'Discord Developer Portal' as your bot's description.
 # Replace {key} with one of the command prefixes for the bot.
-sample_bot_description = f"Stoplight-Bot helps users anonymously share their comfort level with a given discussion." \
-                         f" Use `{key} green` to say you're good-to-go. Use `{key} yellow` if the " \
-                         f"conversation should proceed with caution. Use `{key} red` if the conversation " \
-                         f"should end, full stop. You can see a list of commands with `{key} commands`."
+sample_bot_description = f"Stoplight-Bot lets you anonymously share your comfort level. " \
+                         f"Use `{key} green` if you're good-to-go. Use `{key} yellow` to proceed with caution. " \
+                         f"Use `{key} red` if the conversation should stop. You can see a full list of commands " \
+                         f"with `{key} commands`."
 
 # Activities
 watching = cycle(["you", "Practical Magic"])
