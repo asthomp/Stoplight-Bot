@@ -6,11 +6,11 @@ def command_list(admin, bot_name):
                     f"Ping bots with `{bot_name} ping`\n" \
                     f"List commands with `{bot_name} commands`\n\n" \
                     f"**Conversation Triggers**:\n" \
-                    f"Hi / Hello / Hey, {bot_name}.\n" \
-                    f"What's up / What are you doing {bot_name}.\n" \
-                    f"How are you/How\'s your day going {bot_name}.\n" \
-                    f"Thanks / Thank you {bot_name}.\n" \
-                    f"Sorry / My bad {bot_name}. \n\n" \
+                    f"Hi / Hello / Hey, {bot_name.capitalize()}.\n" \
+                    f"What's up / What are you doing, {bot_name.capitalize()}.\n" \
+                    f"How are you/How\'s your day going, {bot_name.capitalize()}.\n" \
+                    f"Thanks / Thank you, {bot_name.capitalize()}.\n" \
+                    f"Sorry / My bad {bot_name.capitalize()}. \n\n" \
                     f"**Stoplight Triggers**:\n" \
                     f"Let someone know that you\'re good-to-go with `{bot_name} green'\n" \
                     f"If the conversation should proceed with caution use `{bot_name} yellow'\n" \

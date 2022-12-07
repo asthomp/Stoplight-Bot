@@ -55,7 +55,7 @@ async def reboot(ctx):
 # This command sends a list of the bot's commands.
 @client.command()
 async def commands(ctx):
-    await ctx.send(c.command_list(authorize_user(ctx.message.author), bot_key.capitalize()))
+    await ctx.send(c.command_list(authorize_user(ctx.message.author), bot_key))
 
 
 # This loop randomly selects a status for the bot.
