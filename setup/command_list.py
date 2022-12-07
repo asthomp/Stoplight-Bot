@@ -3,7 +3,7 @@
 def command_list(ctx, admin, bot_name):
     user_commands = f"\n\t🟢\t 🟡\t🔴\n" \
                     f"==STOPLIGHT-BOT COMMANDS ==\n\n" \
-                    f"All bots respond to both chat messages and private messages.\n\n" \
+                    f"Most commands do not work in private messages.\n\n" \
                     f"Ping bots with `{bot_name} ping`\n" \
                     f"List commands with `{bot_name} commands`\n\n" \
                     f"**Conversation Triggers**:\n" \

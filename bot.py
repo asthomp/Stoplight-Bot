@@ -41,13 +41,13 @@ async def on_command_error(ctx, error):
 
 
 # This command pings the bot to confirm that it's online.
-@client.command()
+@client.command(no_pm=True)
 async def ping(ctx):
     await ctx.send(phrases.ping)
 
 
 # This command reboots the bot - it can only be used by a guild admin or the developer.
-@client.command()
+@client.command(no_pm=True)
 async def reboot(ctx):
     await reboot_bots(ctx, bot_key)
 
@@ -66,7 +66,7 @@ async def change_status():
 
 
 # == ROLE-PLAY ACTIONS
-@client.command()
+@client.command(no_pm=True)
 async def hug(ctx, *target):
     original_target = " ".join(target)
     target = original_target.rstrip(".,!?")
@@ -102,19 +102,19 @@ async def stoplight(ctx, guild_config, key):
     await ctx.message.delete()
 
 
-@client.command()
+@client.command(no_pm=True)
 @has_permissions(send_messages=True)
 async def green(ctx):
     await stoplight(ctx, config.guild_config, "green")
 
 
-@client.command()
+@client.command(no_pm=True)
 @has_permissions(send_messages=True)
 async def yellow(ctx):
     await stoplight(ctx, config.guild_config, "yellow")
 
 
-@client.command()
+@client.command(no_pm=True)
 @has_permissions(send_messages=True)
 async def red(ctx):
     await stoplight(ctx, config.guild_config, "red")
