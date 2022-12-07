@@ -105,16 +105,12 @@ async def stoplight(ctx, guild_config, key):
                 print(err)
 
 
-@client.command(no_pm=True)
+@client.hybrid_command(no_pm=True)
 @has_permissions(send_messages=True)
 async def green(ctx):
     await stoplight(ctx, config.guild_config, "green")
-    await ctx.message.delete()
-
-
-@tree.command(name="green", description="You are good-to-go.")
-async def _green(ctx):
-    await stoplight(ctx, config.guild_config, "green")
+    if ctx.message:
+        await ctx.message.delete()
 
 
 @client.command(no_pm=True)
