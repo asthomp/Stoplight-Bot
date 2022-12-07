@@ -27,6 +27,7 @@ client = commands.Bot(command_prefix=phrases.prefixes, intents=intents)
 @client.event
 async def on_ready():
     print(f'{bot_key.capitalize()} just woke up.')
+    change_status.start()
 
 
 # This error handler catches invalid commands.
