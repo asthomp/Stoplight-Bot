@@ -31,7 +31,7 @@ tree = discord.app_commands.CommandTree(client)
 async def on_ready(ctx):
     print(ctx)
     print(f'{bot_key.capitalize()} just woke up.')
-    await tree.sync(guild=discord.Object(id=ctx.guild.id))
+    await tree.sync(guild=discord.Object(id=963899072622788700))
     change_status.start()
 
 
