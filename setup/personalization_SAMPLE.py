@@ -16,8 +16,8 @@ ping = f"{key.capitalize()} is live!"
 # Sample Bot Description
 # This string can be used in the 'Discord Developer Portal' as your bot's description.
 sample_bot_description = f"Stoplight-Bot lets you anonymously share your comfort level. " \
-                         f"Use `stoplight green` if you're good-to-go. Use `stoplight yellow` to proceed with " \
-                         f"caution. Use `stoplight red` if the conversation should stop. You can see a full " \
+                         f"Use `stoplight green` if you're good-to-go, `stoplight yellow` to proceed with " \
+                         f"caution, or `stoplight red` if the conversation should stop. You can see a full " \
                          f"list of commands with `stoplight commands`."
 
 # Activities
