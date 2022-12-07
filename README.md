@@ -72,6 +72,7 @@ This step assumes that you've created a bot and know its ID and token, which can
 the [Discord Developer Portal](https://discord.com/developers/docs/intro).
 
 Oh! And, feel free to use the following text for the bot's description:
+
 ```
 Stoplight-Bot lets you anonymously share your comfort level. 
 Use `stoplight green` if you're good-to-go, `stoplight yellow` 
@@ -125,7 +126,8 @@ numeric ID.
 
 Next, let's say we have a private channel named `#moderators` and, when a stoplight command is used, we want the bot to
 post a message in that channel and ping moderators with the role `@Moderator Squad`. Under `admin_channel`, put the ID
-for the private moderator channel. Under `moderator_role`, put the ID of the role you want tagged. Here's what our sample would look like after putting in the IDs associated with `@Moderator Squad` and `#moderators`.
+for the private moderator channel. Under `moderator_role`, put the ID of the role you want tagged. Here's what our
+sample would look like after putting in the IDs associated with `@Moderator Squad` and `#moderators`.
 
 ```
 }, 12345: {"id": 12345,
@@ -137,6 +139,7 @@ for the private moderator channel. Under `moderator_role`, put the ID of the rol
         ....
 
 ```
+
 Now, let's build some custom messages for our bots.
 
 ```
@@ -169,11 +172,15 @@ Now, let's build some custom messages for our bots.
 }
 ```
 
-For each color, you can add a custom emoji, alert, user message, and admin message. Remember, admin messages get 
-posted to the channel specified in `admin_channel`. Try to copy the message pattern - `f"MESSAGE"`. 
-You can use `None` in lieu of an alert or emoji - no quotes.
+For each color, you can add a custom emoji, alert, user message, and admin message. Remember, admin messages get
+posted to the channel specified in `admin_channel`. All messages should be formatted as
+[Python f-strings](https://realpython.com/python-f-strings/). You can read more about them by reading
+[this article](https://realpython.com/python-f-strings/).
 
-You can also use the following placeholders in messages to reference 
+You *can* use `None` in lieu of an alert, emoji, or admin message but the actual message must contain *at
+least* one character.
+
+You can also use the following placeholders in messages to reference
 other Discord resources:
 
 ```
