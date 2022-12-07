@@ -105,7 +105,7 @@ async def stoplight(ctx, guild_config, key):
                 print(err)
 
 
-@client.hybrid_command(no_pm=True)
+@client.hybrid_command(no_pm=True, with_app_command=True)
 @has_permissions(send_messages=True)
 async def green(ctx):
     await stoplight(ctx, config.guild_config, "green")
