@@ -16,7 +16,7 @@ def command_list(ctx, admin, bot_name):
                     f"**Stoplight Commands**:\n" \
                     f">Let someone know that you\'re good-to-go with `{bot_name} green`\n" \
                     f">If the conversation should proceed with caution, use `{bot_name} yellow`\n" \
-                    f">If you need to stop the conversation and ping an admin, use `{bot_name} red`\n"
+                    f">If you need to stop the conversation and ping an admin, use `{bot_name} red`"
     admin_commands = f"\n\n**ADMIN Commands**:\n" \
                      f">Reboot bot with `{bot_name} reboot`\n"
 
