@@ -102,7 +102,7 @@ This file stores data about your guild and customizes the posts that Stoplight-B
 message in the same channel as the source command. It can also be configured to send an additional message to a
 private channel used by moderators.
 
-Do not change the "default" guild. Instead, customize the section below it that's labeled `Better Than Chuck` or add
+Do not change the "default" guild. Instead, customize the section below it labeled `Better Than Chuck` or add
 a new entry. **Be mindful of the quotes!!** Discord resource IDs (ex: emoji ids, user ids, channel ids) should not
 have quotes!
 
