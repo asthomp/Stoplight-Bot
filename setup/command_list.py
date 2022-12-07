@@ -1,6 +1,6 @@
 # Description: Returns a formatted list of the bot's commands and/or instructions to use them.
 # Customize using f-strings.
-def command_list(admin, bot_name):
+def command_list(ctx, admin, bot_name):
     user_commands = f"\n\t🟢\t 🟡\t🔴\n" \
                     f"==STOPLIGHT-BOT COMMANDS ==\n\n" \
                     f"All bots respond to both chat messages and private messages.\n\n" \
@@ -19,6 +19,6 @@ def command_list(admin, bot_name):
     admin_commands = f"\n\n**ADMIN Commands**:\n" \
                      f"Reboot bot with `{bot_name} reboot`\n"
     if admin:
-        return user_commands + admin_commands + f"\t\t\t\t🟢\t 🟡\t🔴\n"
+        return user_commands + admin_commands + f"{' ' * (len(bot_name)*2)}🟢\t 🟡\t🔴\n"
     else:
         return user_commands + f"\t🟢\t 🟡\t🔴\n"
