@@ -10,7 +10,7 @@ def command_list(ctx, admin, bot_name):
                     f"The bot can respond to some natural speech. Here are some examples:\n\n" \
                     f"> \t\tHi / Hello / Hey {bot_name.capitalize()}.\n" \
                     f"> \t\tWhat's up, {bot_name.capitalize()}?\n" \
-                    f"> \t\tHow\'s your day going, {bot_name.capitalize()}.\n" \
+                    f"> \t\tHow\'s your day going, {bot_name.capitalize()}?\n" \
                     f"> \t\tThanks {bot_name.capitalize()}!\n" \
                     f"> \t\tSorry {bot_name.capitalize()}!\n\n" \
                     f"**Stoplight Commands**:\n\n" \
