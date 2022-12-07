@@ -1,7 +1,7 @@
 # Description: Returns a formatted list of the bot's commands and/or instructions to use them.
 # Customize using f-strings.
 def command_list(ctx, admin, bot_name):
-    user_commands = f"\n\t🟢\t 🟡\t🔴\n" \
+    user_commands = f"\n\t🟢\t 🟡\t🔴\n\n" \
                     f"==STOPLIGHT-BOT COMMANDS ==\n" \
                     f"Most commands do not work in private messages.\n\n" \
                     f"Ping bots with `{bot_name} ping`\n" \
@@ -18,9 +18,10 @@ def command_list(ctx, admin, bot_name):
                     f">If the conversation should proceed with caution, use `{bot_name} yellow`\n" \
                     f">If you need to stop the conversation and ping an admin, use `{bot_name} red`"
     admin_commands = f"\n\n**ADMIN Commands**:\n" \
-                     f">Reboot bot with `{bot_name} reboot`\n"
+                     f">Reboot bot with `{bot_name} reboot`\n\n"
+    tail = f"🟢\t 🟡\t🔴\n"
 
     if admin:
-        return user_commands + admin_commands + f"🟢\t 🟡\t🔴\n"
+        return user_commands + admin_commands + tail
     else:
-        return user_commands + f"🟢\t 🟡\t🔴\n"
+        return user_commands + tail
