@@ -5,13 +5,22 @@ from itertools import cycle
 key = "rowena"
 
 # Command Prefixes - do not remove the " " or you will have a bad time.
-prefixes = ["Rowena ", "rowena ", "ROWENA "]
+# We recommend leaving the default 'stoplight' prefixes in place.
+prefixes = ["Rowena ", "rowena ", "ROWENA ", "Stoplight ", "stoplight ", "STOPLIGHT "]
 
 # Bot Name Variants - Stoplight-bot can listen for variations in its name.
 variants = ["Rowena", "rowena", "ROWENA", "Queen of Hell", "Rowena MacLeod", "rowena macleod", "Rowena Macleod"]
 
 # Administrative
 ping = "Shall we discuss terms?"
+
+# Sample Bot Description
+# This string can be used in the 'Discord Developer Portal' as your bot's description.
+# Replace {key} with one of the command prefixes for the bot.
+sample_bot_description = f"Stoplight-Bot helps users anonymously share their comfort level with a given discussion." \
+                         f" Use `{key} green` to say you're good-to-go. Use `{key} yellow` if the " \
+                         f"conversation should proceed with caution. Use `{key} red` if the conversation " \
+                         f"should end, full stop. You can see a list of commands with `{key} commands`."
 
 # Activities
 watching = cycle(["you", "Practical Magic"])

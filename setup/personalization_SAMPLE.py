@@ -13,6 +13,13 @@ variants = ["Stoplight", "stoplight", "STOPLIGHT", "Stoplight-bot", "Stoplight-B
 # Administrative
 ping = f"{key.capitalize()} is live!"
 
+# Sample Bot Description
+# This string can be used in the 'Discord Developer Portal' as your bot's description.
+sample_bot_description = f"Stoplight-Bot helps users anonymously share their comfort level with a given discussion." \
+                         f" Use `stoplight green` to say you're good-to-go. Use `stoplight yellow` if the " \
+                         f"conversation should proceed with caution. Use `stoplight red` if the conversation " \
+                         f"should end, full stop. You can see a list of commands with `stoplight commands`."
+
 # Activities
 watching = cycle(["the road", "for trouble", "paint dry"])
 listening = cycle(["Men at Work - Safety Dance", "Rihanna - S&M", "Vintage Culture, Fancy Inc - Cali Dreams"])
