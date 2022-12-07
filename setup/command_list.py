@@ -1,7 +1,8 @@
 # Description: Returns a formatted list of the bot's commands and/or instructions to use them.
 # Customize using f-strings.
 def command_list(admin, bot_name):
-    user_commands = f"==STOPLIGHT-BOT COMMANDS ==\n\n" \
+    user_commands = f"Look what I can do! :look:\n" \
+                    f"==STOPLIGHT-BOT COMMANDS ==\n\n" \
                     f"All bots respond to both chat messages and private messages.\n\n" \
                     f"Ping bots with `{bot_name} ping`\n" \
                     f"List commands with `{bot_name} commands`\n\n" \
