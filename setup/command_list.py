@@ -2,7 +2,7 @@
 # Customize using f-strings.
 def command_list(ctx, admin, bot_name):
     user_commands = f"\n\t🟢\t 🟡\t🔴\n\n" \
-                    f"==STOPLIGHT-BOT COMMANDS ==\n" \
+                    f"**==STOPLIGHT-BOT COMMANDS ==**\n" \
                     f"Most commands do not work in private messages.\n\n" \
                     f"> \t\tPing bots with `{bot_name} ping`\n" \
                     f"> \t\tList commands with `{bot_name} commands`\n\n" \
