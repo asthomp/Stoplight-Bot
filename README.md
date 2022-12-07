@@ -77,7 +77,7 @@ Stoplight-Bot lets you anonymously share your comfort level.
 Use `stoplight green` if you're good-to-go, `stoplight yellow` 
 to proceed with caution, or `stoplight red` if the conversation 
 should stop. You can see a full list of commands with 
-`stoplight commands`.
+`stoplight commands`. 
 ```
 
 Open the project up in your favorite file navigator. Then, create a brand-new file in your preferred Python IDE or text
