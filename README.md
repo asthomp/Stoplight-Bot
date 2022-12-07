@@ -26,6 +26,12 @@ tagging moderators and alerting them to a potentially inflammatory discussion.
 
 ## Running Stoplight-Bot
 
+### Prerequisite Knowledge
+This guide assume that you have little-to-no programming experience. If you're familiar with setting up or programming 
+Discord bots, skim for the details you need and discard the rest! Prior to running Stoplight-Bot, you'll need to 
+familiarize yourself with the [Discord Developer Portal](https://discord.com/developers/docs/intro) and understand how to 
+[create an app](https://discord.com/developers/docs/getting-started#creating-an-app). 
+
 ### Start the Terminal (Console)
 
 An operating-system (OS) has a Terminal (sometimes called a 'Console') that runs a program called a Shell. Your OS
@@ -183,8 +189,7 @@ posted to the channel specified in `admin_channel`. All messages should be forma
 You *can* use `None` in lieu of an alert, emoji, or admin message but the actual message must contain *at
 least* one character.
 
-You can also use the following placeholders in messages to reference
-other Discord resources:
+You can also use the following placeholders other Discord resources:
 
 ```
     @USER will link to the message's original author.
@@ -222,8 +227,9 @@ sure that the bot has permission to post in that channel.
 
 Open your terminal and navigate to the project's folder. Like before, we need to activate the virtual environment
 using `$ source venv/bin/activate` (Mac/Linux, bash/zsh) or `C:\> venv\Scripts\activate.bat` (Windows, cmd.exe). Then,
-type `python3 bot.py`. After a bit, `{guild_config.key} woke up!` should display on the terminal. If you check your
-guild, the bot should now be active. Make sure all the commands work and, if they do, you're done.
+type `python3 bot.py`. After a bit, an announcemnet should display on the terminal, letting you know that the bot 
+is live. If you check your guild, the bot should now be online. Make sure all the commands work and, if they do, 
+you're done.
 
 Congratulations! You installed the Stoplight-Bot.
 
