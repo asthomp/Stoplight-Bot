@@ -69,9 +69,12 @@ requirements listed in `requirements.txt`.
 ### Setup Bot Credentials
 
 This step assumes that you've created a bot and know its ID and token, which can be found in
-the [Discord Developer Portal](https://discord.com/developers/docs/intro).
+the [Discord Developer Portal](https://discord.com/developers/docs/intro). You can learn more
+about setting up a bot by reading [this article](https://discord.com/developers/docs/getting-started#creating-an-app).
 
-Oh! And, feel free to use the following text for the bot's description:
+
+
+Feel free to use the following text for the bot's description:
 
 ```
 Stoplight-Bot lets you anonymously share your comfort level. 
