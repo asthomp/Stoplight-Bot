@@ -20,8 +20,7 @@ def command_list(ctx, admin, bot_name):
     admin_commands = f"\n\n**ADMIN Commands**:\n" \
                      f">Reboot bot with `{bot_name} reboot`\n"
 
-
-if admin:
-    return user_commands + admin_commands + f"🟢\t 🟡\t🔴\n"
-else:
-    return user_commands + f"🟢\t 🟡\t🔴\n"
+    if admin:
+        return user_commands + admin_commands + f"🟢\t 🟡\t🔴\n"
+    else:
+        return user_commands + f"🟢\t 🟡\t🔴\n"
