@@ -16,10 +16,7 @@ health.
 
 The stoplight system allows users to deepen connections through a mutual respect of eachother's boundaries. Its
 goal is not to prevent free-speech but, rather, to ensure that potentially harmful dialogue is tabled for another venue
-or time. Essentially, it reminds us to be mindful of others around us. After all, our relationships with one another
-are more important than any momentary feeling of "I'm right! You just can't handle the truth!"
-
-Be kind to one another.
+or time. Essentially, it reminds us to be mindful of others around us so that everyone walks away feeling awesome.
 
 ## Features
 
@@ -73,6 +70,15 @@ requirements listed in `requirements.txt`.
 
 This step assumes that you've created a bot and know its ID and token, which can be found in
 the [Discord Developer Portal](https://discord.com/developers/docs/intro).
+
+Oh! And, feel free to use the following text for the bot's description:
+```
+Stoplight-Bot lets you anonymously share your comfort level. 
+Use `stoplight green` if you're good-to-go, `stoplight yellow` 
+to proceed with caution, or `stoplight red` if the conversation 
+should stop. You can see a full list of commands with 
+`stoplight commands`.
+```
 
 Open the project up in your favorite file navigator. Then, create a brand-new file in your preferred Python IDE or text
 editor. Name the file `.env` and save it in the same folder as `bot.py`. Add your bot's Discord credentials to this
