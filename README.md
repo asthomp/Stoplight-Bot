@@ -150,7 +150,7 @@ Now, let's build some custom messages for our bots.
                             f"in #CHANNEL. Please check in on them, but only intervene "
                             f"if the situation escalates."},
 "red": {"emoji": f"<:EMOJI_NAME:EMOJI_ID>",
-        "alert": f"Poughkeepsie!",
+        "alert": f"Time out!",
         "message": f"Someone in the channel just called :octagonal_sign: red "
                    f":octagonal_sign: ;  stop this conversation and take a break. "
                    f"!MODERATOR_ROLE will pop in shortly to help resolve the situation"

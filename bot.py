@@ -3,7 +3,7 @@ from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions, MissingPermissions
 from dotenv import load_dotenv
 
-from setup import personalization, config
+from setup import personalization, config, command_list as c
 from utils import *
 
 # Privileged Intents
@@ -50,6 +50,12 @@ async def ping(ctx):
 @client.command()
 async def reboot(ctx):
     await reboot_bots(ctx, bot_key)
+
+
+# This command sends a list of the bot's commands.
+@client.command()
+async def commands(ctx):
+    await ctx.send(c.command_list(authorize_user(ctx.message.author), bot_key.capitalize()))
 
 
 # This loop randomly selects a status for the bot.
