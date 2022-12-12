@@ -116,7 +116,7 @@ environment by typing the command `$ source venv/bin/activate` (Mac/Linux, bash/
 
 ### Install Dependencies
 
-The project needs several dependencies in order to run. Type `pip3 install -r requirements.txt` to install the
+The project needs several dependencies in order to run. Type `pip install -r requirements.txt` to install the
 requirements listed in `requirements.txt`.
 
 ### Setup Bot Credentials
