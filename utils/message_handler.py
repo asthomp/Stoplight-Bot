@@ -1,10 +1,5 @@
 # noinspection PyPackageRequirements
 import copy
-import os
-import sys
-
-import discord
-import random
 
 
 # Receives a message object and sends a response (after checking various parameters).

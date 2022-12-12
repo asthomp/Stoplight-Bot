@@ -20,26 +20,73 @@ or time. Essentially, it reminds us to be mindful of others around us so that ev
 
 ## Features
 
-When a stoplight command is used, the bot will post a message to the channel. To preserve anonymity, it will also delete
-the user's original message. If configured, the bot can also simultaneously post a message in an administrative channel,
-tagging moderators and alerting them to a potentially inflammatory discussion.
+Stoplight-Bot posts an anonymous announcement to the channel flagged by the command. If configured, it can
+also simultaneously post a message to an administrative channel, tagging moderators and alerting them to  
+potentially inflammatory discussions. There are three ways to issue a stoplight command: posting a text-based
+chat command directly to the channel, using a `/` application command, or accessing a message's context menu.
+
+### Chat Commands
+
+> Users can issue stoplight commands by posting the command directly to a channel.
+> The default prefix for stoplight chat commands is `stoplight`.
+>
+> - `stoplight green` signals that a user is good-to-go
+>
+>
+> - `stoplight yellow` signals that the discussion should proceed with care
+>
+>
+> - `stoplight red` signals that the discussion should stop and may flag a moderator
+>
+> To preserve anonymity, the Stoplight-Bot deletes stoplight commands posted directly to a channel.
+
+### Slash Commands
+
+> If [application commands](https://discord.com/developers/docs/interactions/application-commands) are allowed in
+> the channel, users can also type `/green`, `/yellow`, and `/red` to issue
+> a stoplight command. Using slash commands helps better preserve anonymity because the command
+> can only be seen by the flagging user.
+>
+> > If users cannot use slash commands, the channel is missing "Application Command" permissions.
+> You can learn more about configuring your channels for application commands
+> [here](https://support.discord.com/hc/en-us/articles/10543994968087-Channel-Permissions-Settings-101).
+
+### Context Menu Commands
+
+> If [application commands](https://discord.com/developers/docs/interactions/application-commands) are allowed in
+> the channel, users can also issue stoplight commands that are targeted at a specific message.
+> - Right-click on the target message
+> - Select `App`
+> - Select the Stoplight-Bot
+> - Select a stoplight command
+    >
+- `/green` signals that a user is good-to-go
+>   - `/yellow` signals that the discussion should proceed with care
+>   - `/red` signals that the discussion should stop and may flag a moderator
+>
+> > If users cannot see stoplight commands in the `App` context menu, the channel is missing "Application Command"
+> > permissions.
+> You can learn more about configuring your channels for application commands
+> [here](https://support.discord.com/hc/en-us/articles/10543994968087-Channel-Permissions-Settings-101).
+>
+> If a moderator channel is configured for the bot, message-targeting context menu commands will include
+> a direct link to the flagged post. This makes moderation quick and easy.
 
 ## Running Stoplight-Bot
 
 ### Prerequisite Knowledge
-This guide assume that you have little-to-no programming experience. If you're familiar with setting up or programming 
-Discord bots, skim for the details you need and discard the rest! Prior to running Stoplight-Bot, you'll need to 
-familiarize yourself with the [Discord Developer Portal](https://discord.com/developers/docs/intro) and understand how to 
-[create an app](https://discord.com/developers/docs/getting-started#creating-an-app). 
+
+This guide assume that you have little-to-no programming experience. If you're familiar with programming
+Discord bots, skim for the details you need and discard the rest! Prior to running Stoplight-Bot, you'll need to
+familiarize yourself with the [Discord Developer Portal](https://discord.com/developers/docs/intro) and understand how
+to
+[create an app](https://discord.com/developers/docs/getting-started#creating-an-app).
 
 ### Start the Terminal (Console)
 
 An operating-system (OS) has a Terminal (sometimes called a 'Console') that runs a program called a Shell. Your OS
 and Shell combination determine the syntax for various commands. While popular samples are included here, you may
 need to do some research to confirm that the commands provided are appropriate for your particular setup.
-
-Terminal
-commands will sometimes be labelled like this: `(OS, Shell)`.
 
 ### Install Python3
 
@@ -78,22 +125,19 @@ This step assumes that you've created a bot and know its ID and token, which can
 the [Discord Developer Portal](https://discord.com/developers/docs/intro). You can learn more
 about setting up a bot by reading [this article](https://discord.com/developers/docs/getting-started#creating-an-app).
 
-
-
 Feel free to use the following text for the bot's description:
 
 ```
-Stoplight-Bot lets you anonymously share your comfort level. 
-Use `stoplight green` if you're good-to-go, `stoplight yellow` 
-to proceed with caution, or `stoplight red` if the conversation 
-should stop. You can see a full list of commands with 
-`stoplight commands`. 
+Stoplight-Bot lets you anonymously share your comfort level.  
+Use `/green` if you're good-to-go, `/yellow` to proceed with 
+caution, or `/red` if the conversation should stop. You can see 
+a full list of commands with `/`.
 ```
 
 Open the project up in your favorite file navigator. Then, create a brand-new file in your preferred Python IDE or text
 editor. Name the file `.env` and save it in the same folder as `bot.py`. Add your bot's Discord credentials to this
 file.
-It might look something like this:
+It should look something like this (but with real credentials):
 
 ```
 ID="12345"
@@ -112,73 +156,63 @@ This file stores data about your guild and customizes the posts that Stoplight-B
 message in the same channel as the source command. It can also be configured to send an additional message to a
 private channel used by moderators.
 
-Do not change the "default" guild. Instead, customize the section below it labeled `Better Than Chuck` or add
-a new entry. **Be mindful of the quotes!!** Discord resource IDs (ex: emoji ids, user ids, channel ids) should not
+You can customize the sample labeled `Better Than Chuck` or add a new entry. **Be mindful of the quotes!!** Discord
+resource IDs (ex: emoji ids, user ids, channel ids) should not
 have quotes!
 
 Let's walk through editing the configuration file.
 
 ```
-}, 12345: {"id": 12345,
-        "name": f"My Guild Name",
+    0: {"id": 0,
+        "name": f"[YOUR GUILD NAME GOES HERE]]",
         "type": f"Guild",
-        "owner": 1111,
+        "owner": None,
         "admin_channel": None,
         "moderator_role": None,
         ....
 ```
 
-First, let's add information about our guild. In the above example, `12345` is both the unique key for the guild
-object and the actual ID of the guild. Make sure that they're the same number. After the Guild ID, you can add the
-guild's name; make sure to put *that* between quotes. You can also add the guild's `owner`, which should be a
-numeric ID.
+First, let's add information about our guild. Note that, in the above example, `0` is both the unique key for the guild
+object and the actual ID of the guild. Enter *your* Guild ID in as the key and "id". Then, add your guild's name and
+put *that* between quotes. If you want, you can add the guild's `owner`, which should also be a numeric ID (no quotes).
 
-Next, let's say we have a private channel named `#moderators` and, when a stoplight command is used, we want the bot to
-post a message in that channel and ping moderators with the role `@Moderator Squad`. Under `admin_channel`, put the ID
-for the private moderator channel. Under `moderator_role`, put the ID of the role you want tagged. Here's what our
-sample would look like after putting in the IDs associated with `@Moderator Squad` and `#moderators`.
+Next, let's say we have a private channel named `#moderator_break_room` and, when a stoplight command is used,
+we want the bot to post a message in that channel and ping moderators with the role `@Moderator Squad`.
+Under `admin_channel`, put the numeric ID of the moderator channel. Under `moderator_role`, put the ID of the role
+you want tagged. Here's what our sample would look like after putting in the IDs associated with `@Moderator Squad`
+and `#moderator_break_room`.
 
 ```
-}, 12345: {"id": 12345,
-        "name": f"My Guild Name",
+}, 963899072622788700: {"id": 963899072622788700,
+        "name": f"My Cool Guild",
         "type": f"Guild",
-        "owner": 1111,
-        "admin_channel": 4322109876543,
-        "moderator_role": 6789101112131,
+        "owner": 403657716129857577,
+        "admin_channel": 1049215454650060834,
+        "moderator_role": 964382007251570688,
         ....
 
 ```
 
-Now, let's build some custom messages for our bots.
+Now, let's build some custom messages for our guild.
 
 ```
 ...
-"green": {"emoji": None,
-          "alert": None,
-          "message": f"Someone in this channel just called :white_check_mark: green "
-                     f":white_check_mark: ; they are good to go.",
-          "admin_message": f"@USER just called :white_check_mark: green "
-                           f":white_check_mark: in #CHANNEL; they are good to go."},
-"yellow": {"emoji": f"<:EMOJI_NAME:EMOJI_ID>",
-           "alert": f"Slow down!",
-           "message": f"Someone in the channel just called :yellow_square: yellow "
-                      f":yellow_square: ; slow down, take care to be kind and "
-                      f"conscientious, and take a break if you need one.",
-           "admin_message": f"@USER just called :yellow_square: yellow :yellow_square: "
-                            f"in #CHANNEL. Please check in on them, but only intervene "
-                            f"if the situation escalates."},
-"red": {"emoji": f"<:EMOJI_NAME:EMOJI_ID>",
-        "alert": f"Time out!",
-        "message": f"Someone in the channel just called :octagonal_sign: red "
-                   f":octagonal_sign: ;  stop this conversation and take a break. "
-                   f"!MODERATOR_ROLE will pop in shortly to help resolve the situation"
-                   f" if necessary.",
-        "admin_message": f"@USER just called :octagonal_sign: red :octagonal_sign: "
-                         f"in #CHANNEL. Please reply here in #ADMIN_CHANNEL to let "
-                         f"your fellow mods know you'll be the one checking it out, "
-                         f"then head over to #CHANNEL to ensure the code of conduct "
-                         f"is being followed and all members are being respected."}
-}
+"green": {
+            "emoji": f"<:EMOJI_NAME:EMOJI_ID>",
+            "alert": f"[YOUR ALERT GOES HERE]",
+            "message": f"[YOUR TEXT GOES HERE]",
+            "admin_message": f"[YOUR ADMIN MESSAGE GOES HERE]"},
+        "yellow": {
+            "emoji": f"<:EMOJI_NAME:EMOJI_ID>",
+            "alert": f"[YOUR ALERT GOES HERE]",
+            "message": f"[YOUR TEXT GOES HERE]",
+            "admin_message": f"[YOUR ADMIN MESSAGE GOES HERE]"},
+
+        "red": {
+            "emoji": f"<:EMOJI_NAME:EMOJI_ID>",
+            "alert": f"[YOUR ALERT GOES HERE]",
+            "message": f"[YOUR TEXT GOES HERE]",
+            "admin_message": f"[YOUR ADMIN MESSAGE GOES HERE]"}
 ```
 
 For each color, you can add a custom emoji, alert, user message, and admin message. Remember, admin messages get
@@ -198,15 +232,15 @@ You can also use the following placeholders other Discord resources:
     !MODERATOR_ROLE will tag the role specified under "moderator_role".
 ```
 
-If you don't want to customize the messages, the bot will default to the messages set under `default`.
+If you don't want to customize the messages, the bot will automatically use a default message.
 
-## Personalization
+### Personalization
 
 Next, open `personalization.py` and skim through its contents. This file lets you personalize the bot and turn them into
 a "character" that matches the theme of your Discord Guild. This is a sample where the bot has been skinned to be
-Rowena from the CW's Supernatural. You can also look at `personalization_SAMPLE.py`, which provides a more generic
-version of the bot. Whichever one you choose, after editing it, the settings you want to use should be stored in
-`personalization.py`.
+Rowena from the CW's Supernatural. You can also look at `personalization_GENERIC_SAMPLE.py`, which provides a more
+generic version of the bot. Whichever one you choose, after editing it, the settings you want to use should be
+stored in `personalization.py`.
 
 ### Review Setup
 
@@ -218,17 +252,18 @@ information in `configuration.py`. You may also have personalized the bot and gi
 ### Add Bot To Discord Guild
 
 You'll need to add the bot you created in the [Discord Developer Portal](https://discord.com/developers/docs/intro)
-to your Discord Guild. Ensure that the bot has all `TEXT PERMISSIONS` and the following `GENERAL PERMISSIONS`:
-`Manage Roles`, `Manage Channels`, `Change Nickname`, `Manage Nicknames`, `Read Messages/View Channels`,
-and `Moderate Members`. If you included a private administration channel in your configuration, you'll need to make
-sure that the bot has permission to post in that channel.
+to your Discord Guild. Ensure that the bot has all the permissions it needs. We recommend enabling all
+`TEXT PERMISSIONS` and the following `GENERAL PERMISSIONS`: `Manage Roles`, `Manage Channels`, `Change Nickname`,
+`Manage Nicknames`, `Read Messages/View Channels`, and `Moderate Members`, which include permissions for future
+features. If you included a private administration channel in your configuration, you'll also need to make
+sure that the bot has permission to post in *that* channel.
 
 ### Run Bot
 
 Open your terminal and navigate to the project's folder. Like before, we need to activate the virtual environment
 using `$ source venv/bin/activate` (Mac/Linux, bash/zsh) or `C:\> venv\Scripts\activate.bat` (Windows, cmd.exe). Then,
-type `python3 bot.py`. After a bit, an announcemnet should display on the terminal, letting you know that the bot 
-is live. If you check your guild, the bot should now be online. Make sure all the commands work and, if they do, 
+type `python3 bot.py`. After a bit, an announcement should display on the terminal, letting you know that the bot
+is live. If you check your guild, the bot should now be online. Make sure all the commands work and, if they do,
 you're done.
 
 Congratulations! You installed the Stoplight-Bot.

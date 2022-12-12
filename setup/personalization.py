@@ -6,7 +6,7 @@ key = "rowena"
 
 # Command Prefixes - do not remove the " " or you will have a bad time.
 # We recommend leaving the default 'stoplight' prefixes in place.
-prefixes = ["Rowena ", "rowena ", "ROWENA ", "Stoplight ", "stoplight ", "STOPLIGHT "]
+prefixes = ["Rowena ", "rowena ", "ROWENA "]
 
 # Bot Name Variants - Stoplight-bot can listen for variations in its name.
 variants = ["Rowena", "rowena", "ROWENA", "Queen of Hell", "Rowena MacLeod", "rowena macleod", "Rowena Macleod"]
@@ -16,11 +16,10 @@ ping = "Shall we discuss terms?"
 
 # Sample Bot Description
 # This string can be used in the 'Discord Developer Portal' as your bot's description.
-# Replace {key} with one of the command prefixes for the bot.
 sample_bot_description = f"Stoplight-Bot lets you anonymously share your comfort level. " \
-                         f"Use `{key} green` if you're good-to-go, `{key} yellow` to proceed with caution, " \
-                         f"or`{key} red` if the conversation should stop. You can see a full list of commands " \
-                         f"with `{key} commands`."
+                         f"Use `/green` if you're good-to-go, `/yellow` to proceed with " \
+                         f"caution, or `/red` if the conversation should stop. You can see " \
+                         f"a full list of commands with `/`."
 
 # Activities
 watching = cycle(["you", "Practical Magic"])

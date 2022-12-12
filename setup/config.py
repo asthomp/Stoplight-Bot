@@ -11,27 +11,67 @@
 #               To get a custom emoji's ID, right-click on the emoji, select "Copy Link", open it in your
 #               browser. The ID is the long number between the  "/" and the image file extension (ex: .jpg, .gif).
 
+guild_config = {  # Sample 1
+    0: {"id": 0,
+        "name": f"[YOUR GUILD NAME GOES HERE]]",
+        "type": f"Guild",
+        "owner": None,
+        "admin_channel": None,
+        "moderator_role": None,
+        "green": {
+            "emoji": f"<:EMOJI_NAME:EMOJI_ID>",
+            "alert": f"[YOUR ALERT GOES HERE]",
+            "message": f"[YOUR TEXT GOES HERE]",
+            "admin_message": f"[YOUR ADMIN MESSAGE GOES HERE]"},
+        "yellow": {
+            "emoji": f"<:EMOJI_NAME:EMOJI_ID>",
+            "alert": f"[YOUR ALERT GOES HERE]",
+            "message": f"[YOUR TEXT GOES HERE]",
+            "admin_message": f"[YOUR ADMIN MESSAGE GOES HERE]"},
 
-guild_config = {  # Default Settings
-    "default": {"green": {"emoji": f"🟢",
-                          "alert": f"Good-to-go.",
-                          "message": f"Someone in this channel just called :white_check_mark: green "
-                                     f":white_check_mark: ; they are good to go.",
-                          "admin_message": None},
-                "yellow": {"emoji": f"🟡",
-                           "alert": f"Be mindful!",
-                           "message": f"Someone in the channel just called :yellow_square: yellow "
-                                      f":yellow_square: ; slow down, take care to be kind and "
-                                      f"conscientious, and take a break if you need one.",
-                           "admin_message": None},
-                "red": {"emoji": f"🔴",
-                        "alert": f"Time out!",
-                        "message": f"Someone in the channel just called :octagonal_sign: red "
-                                   ":octagonal_sign: ;  stop this conversation and take a break. Someone "
-                                   "will pop in shortly to help resolve the situation if necessary.",
-                        "admin_message": None}
-                },
-    # Sample 1
+        "red": {
+            "emoji": f"<:EMOJI_NAME:EMOJI_ID>",
+            "alert": f"[YOUR ALERT GOES HERE]",
+            "message": f"[YOUR TEXT GOES HERE]",
+            "admin_message": f"[YOUR ADMIN MESSAGE GOES HERE]"}
+        },
+    # Sample 2
+    963899072622788700: {"id": 963899072622788700,
+                         "name": "Sample Guild",
+                         "type": f"Guild",
+                         "owner": 403657716129857577,
+                         "admin_channel": 1049215454650060834,
+                         "moderator_role": 964382007251570688,
+                         "green": {
+                             "emoji": f"<:green_icon:1051733810800238673>",
+                             "alert": "Green!",
+                             "message": f"Someone in this channel just called :white_check_mark: green "
+                                        f":white_check_mark: ; they are good to go.",
+                             "admin_message": f"@USER just called :white_check_mark: green in #CHANNEL."},
+                         "yellow": {
+                             "emoji": f"<:yellow_icon:1051733853506646067>",
+                             "alert": f"Yellow!",
+                             "message": f"Someone in the channel just called :yellow_square: yellow "
+                                        f":yellow_square: ; slow down, take care to be kind and "
+                                        f"conscientious, and take a break if you need one.",
+                             "admin_message": f"@USER just called :yellow_square: yellow :yellow_square: "
+                                              f"in #CHANNEL. Please check in on them, but only intervene "
+                                              f"if the situation escalates."},
+
+                         "red": {
+                             "emoji": f"<:red_icon:1051733888113836103>",
+                             "alert": f"Red!",
+                             "message": f"Someone in the channel just called :octagonal_sign: red "
+                                        f":octagonal_sign: ;  stop this conversation and take a break. "
+                                        f"!MODERATOR_ROLE will pop in shortly to help resolve the situation"
+                                        f" if necessary.",
+                             "admin_message": f"@USER just called :octagonal_sign: red :octagonal_sign: "
+                                              f"in #CHANNEL. Please reply here in #ADMIN_CHANNEL to let "
+                                              f"your fellow mods know you'll be the one checking it out, "
+                                              f"then head over to #CHANNEL to ensure the code of conduct "
+                                              f"is being followed and all members are being respected."}
+                         },
+    # Sample 3
     875820996047802398: {"id": 875820996047802398,
                          "name": f"Better Than Chuck",
                          "type": f"Guild",
@@ -66,44 +106,5 @@ guild_config = {  # Default Settings
                                               f"your fellow mods know you'll be the one checking it out, "
                                               f"then head over to #CHANNEL to ensure the code of conduct "
                                               f"is being followed and all members are being respected."}
-                         },
-    # Sample 2
-    12345678910: {"id": 12345678910,
-                  "name": f"My Cool Server",
-                  "type": f"Guild",
-                  "owner": 111111111,
-                  "admin_channel": 222222222,
-                  "moderator_role": 333333333,
-                  "green": {
-                      "emoji": None,
-                      "alert": None,
-                      "message": f"My green user message has multiple f-string lines! Wow!"
-                                 f"Someone in this channel just called :white_check_mark: green "
-                                 f":white_check_mark: ; they are good to go.",
-                      "admin_message": f"My admin message has two f-string lines."
-                                       f"@USER just called :white_check_mark: green in #CHANNEL."},
-                  "yellow": {
-                      "emoji": f"<:EMOJI_NAME:EMOJI_ID>",
-                      "alert": f"A yellow alert!",
-                      "message": f"My yellow user message has multiple f-string lines! Wow! "
-                                 f"Someone in the channel just called :yellow_square: yellow "
-                                 f":yellow_square: ; slow down, take care to be kind and "
-                                 f"conscientious, and take a break if you need one.",
-                      "admin_message": f"My yellow admin message has multiple f-string lines! Wow!"
-                                       f"@USER just called :yellow_square: yellow :yellow_square: "
-                                       f"in #CHANNEL. Please check in on them, but only intervene "
-                                       f"if the situation escalates."},
-                  "red": {
-                      "emoji": f"<:EMOJI_NAME:EMOJI_ID>",
-                      "alert": f"Red alert!",
-                      "message": f"Someone in the channel just called :octagonal_sign: red "
-                                 f":octagonal_sign: ;  stop this conversation and take a break. "
-                                 f"!MODERATOR_ROLE will pop in shortly to help resolve the situation"
-                                 f" if necessary.",
-                      "admin_message": f"@USER just called :octagonal_sign: red :octagonal_sign: "
-                                       f"in #CHANNEL. Please reply here in #ADMIN_CHANNEL to let "
-                                       f"your fellow mods know you'll be the one checking it out, "
-                                       f"then head over to #CHANNEL to ensure the code of conduct "
-                                       f"is being followed and all members are being respected."}
-                  }
+                         }
 }
