@@ -1,7 +1,3 @@
-import json
-from enum import Enum
-from typing import Literal
-
 import discord.client
 from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions
