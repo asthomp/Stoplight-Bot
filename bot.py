@@ -243,4 +243,4 @@ async def respond_to_user(message):
                 random.choice(phrases.compliment_response))
 
 
-client.run(os.getenv('TEST_TOKEN'))
+client.run(os.getenv('TOKEN'))
