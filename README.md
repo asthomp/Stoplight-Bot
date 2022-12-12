@@ -93,6 +93,8 @@ From your computer's terminal, check to see whether-or-not [Python3](https://www
 this by typing the command `which python3` (Mac/Linux, bash/zsh). If the response indicates that Python3
 is not installed, follow the installation instructions [here](https://www.python.org).
 
+You'll need to install Python 3.8 or higher.
+
 ### Download Repository
 
 Secondly, download the project's GitHub repository. This contains all the code and files necessary to run the program.
@@ -117,6 +119,10 @@ environment by typing the command `$ source venv/bin/activate` (Mac/Linux, bash/
 
 The project needs several dependencies in order to run. Type `pip install -r requirements.txt` to install the
 requirements listed in `requirements.txt`.
+
+You'll need to be able to install [Discord.py version 2.1.0](https://pypi.org/project/discord.py/) for the project to run.
+
+
 
 ### Setup Bot Credentials
 
