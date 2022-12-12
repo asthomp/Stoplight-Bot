@@ -17,17 +17,13 @@ bot_key = phrases.key
 class Bot(commands.Bot):
     def __init__(self):
         # Privileged Intents
-        intents = discord.Intents.default()
+        intents = discord.Intents.all()
         intents.guilds = True
         intents.emojis = True
         intents.members = True
         intents.presences = True
         intents.messages = True
         intents.message_content = True
-
-        intents = discord.Intents.default()
-        intents.messages = True
-
 
         super().__init__(command_prefix=prefixes, intents=intents)
 
