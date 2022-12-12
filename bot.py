@@ -25,6 +25,10 @@ class Bot(commands.Bot):
         intents.messages = True
         intents.message_content = True
 
+        intents = discord.Intents.default()
+        intents.messages = True
+
+
         super().__init__(command_prefix=prefixes, intents=intents)
 
     async def setup_hook(self):
