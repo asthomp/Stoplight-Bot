@@ -23,6 +23,7 @@ class Bot(commands.Bot):
         intents.members = True
         intents.presences = True
         intents.messages = True
+        intents.message_content = True
 
         super().__init__(command_prefix=prefixes, intents=intents)
 
