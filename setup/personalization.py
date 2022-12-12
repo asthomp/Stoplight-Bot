@@ -5,7 +5,6 @@ from itertools import cycle
 key = "rowena"
 
 # Command Prefixes - do not remove the " " or you will have a bad time.
-# We recommend leaving the default 'stoplight' prefixes in place.
 prefixes = ["Rowena ", "rowena ", "ROWENA "]
 
 # Bot Name Variants - Stoplight-bot can listen for variations in its name.

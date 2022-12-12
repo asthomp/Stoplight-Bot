@@ -59,8 +59,7 @@ chat command directly to the channel, using a `/` application command, or access
 > - Select `App`
 > - Select the Stoplight-Bot
 > - Select a stoplight command
-    >
-- `/green` signals that a user is good-to-go
+>   - `/green` signals that a user is good-to-go
 >   - `/yellow` signals that the discussion should proceed with care
 >   - `/red` signals that the discussion should stop and may flag a moderator
 >
