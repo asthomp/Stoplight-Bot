@@ -11,11 +11,13 @@ async def reboot_bots(ctx, bot):
     bot = bot.capitalize()
     if authorize_user(ctx.message.author):
         print(f"{ctx.message.author} rebooted {bot}.")
-        await ctx.send(f" :computer:  {bot} is rebooting.")
         print("\t => git pull")
         os.system("git pull")
-        print(f"\t =>python3 {sys.argv[0]}")
-        os.system(f"python3 {sys.argv[0]}")
+        command = f"python3 {sys.argv[0]}"
+        print(f"\t =>{command}")
+        os.system(command)
+        await ctx.send(f" :computer:  {bot} is rebooting.")
+        return
     else:
         await ctx.send(
             f" :computer:  Only admins can reboot {bot}!")
