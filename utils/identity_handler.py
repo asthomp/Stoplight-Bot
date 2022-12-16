@@ -5,14 +5,16 @@ import random
 import sys
 import subprocess
 
+
 # == BOT MANAGEMENT ==
 # Description: Reboots a given bot when prompted by an authorized user.
 async def reboot_bots(ctx, bot):
     bot = bot.capitalize()
     if authorize_user(ctx.message.author):
         await ctx.send(f" :computer:  {bot} is rebooting.")
-        result = subprocess.run(["git", "pull"], check=True, stdout=subprocess.PIPE).stdout
+        subprocess.run(["git", "pull"], check=True, stdout=subprocess.PIPE)
         print("=> git pull")
+        print(f"=> python3 {sys.argv[0]}")
         os.execv(sys.executable, ['python3'] + sys.argv)
     else:
         await ctx.send(
