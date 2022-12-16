@@ -263,4 +263,4 @@ async def on_error(interaction, error):
         raise error
 
 
-client.run(os.getenv('BOT_TOKEN'))
+client.run(os.getenv('TOKEN'))
