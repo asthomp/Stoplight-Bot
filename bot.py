@@ -1,7 +1,10 @@
-import discord.client
-from discord.ext import commands, tasks
-from discord.ext.commands import has_permissions
 from dotenv import load_dotenv
+
+import discord.client
+import discord.types.emoji
+from discord.ext import commands, tasks
+from discord.app_commands import MissingPermissions
+from discord.ext.commands import has_permissions
 
 from setup import personalization as phrases
 from utils import command_list as c
@@ -13,7 +16,7 @@ prefixes = phrases.prefixes + default_prefixes
 bot_key = phrases.key
 
 
-# Load Bot
+# == LOAD BOT ==
 class Bot(commands.Bot):
     def __init__(self):
         # Privileged Intents
@@ -26,32 +29,30 @@ class Bot(commands.Bot):
         intents.message_content = True
 
         super().__init__(command_prefix=prefixes, intents=intents)
+        self.synced = False
 
-    async def setup_hook(self):
-        await self.tree.sync()
-        print(f"Synced slash commands for {self.user}.")
+    async def on_ready(self):
+        # Check if the tree is synced.
+        await self.wait_until_ready()
+        if not self.synced:
+            await self.tree.sync()
+            self.synced = True
+            print(f"Synced slash commands for {self.user}.")
+
+        # Start the activity cycle.
+        try:
+            change_status.start()
+            print(f"Started activity cycle for {self.user}.")
+        except RuntimeError as err:
+            print(f"{self.user} has a running activity cycle.")
+
+        print(f'{client.user} just woke up.')
 
 
 client = Bot()
 
 
-# Wake up bot!
-@client.event
-async def on_ready():
-    print(f'{client.user} just woke up.')
-    change_status.start()
-
-
-# This error handler catches invalid commands.
-@client.event
-async def on_command_error(ctx, error):
-    print(f"{ctx.author.display_name} triggered {error}.")
-    if isinstance(error, discord.ext.commands.CommandNotFound):
-        return
-    else:
-        raise error
-
-
+# == ADMINISTRATIVE FUNCTIONS ==
 # This command pings the bot to confirm that it's online.
 @client.command(no_pm=True)
 async def ping(ctx):
@@ -70,6 +71,7 @@ async def commands(ctx):
     await ctx.send(c.command_list(ctx, authorize_user(ctx.message.author), bot_key))
 
 
+# == ACTIVITY HANDLER ==
 # This loop randomly selects a status for the bot.
 @tasks.loop(minutes=7)
 async def change_status():
@@ -77,7 +79,7 @@ async def change_status():
                               phrases.playing, phrases.listening)
 
 
-# == ROLE-PLAY ACTIONS
+# == ROLE-PLAY ACTIONS ==
 @client.command(no_pm=True)
 async def hug(ctx, *target):
     original_target = " ".join(target)
@@ -129,14 +131,14 @@ async def _text(ctx, color):
 
 
 async def _slash(interaction, color):
-    ctx = await discord.ext.commands.Context.from_interaction(interaction)
+    ctx = await build_context(discord, interaction)
     await stoplight(ctx, color)
     await ctx.send(f"{default_config[color]['emoji']} A {color} stoplight was sent to <#{interaction.channel.id}>.",
                    ephemeral=True)
 
 
 async def _message_context_menu(interaction, color, flagged_message):
-    ctx = await discord.ext.commands.Context.from_interaction(interaction)
+    ctx = await build_context(discord, interaction)
     await stoplight(ctx, color, flagged_message)
     await ctx.send(f"{default_config[color]['emoji']} A {color} stoplight was sent to <#{interaction.channel.id}>.",
                    ephemeral=True)
@@ -199,7 +201,7 @@ async def __red(interaction: discord.Interaction, message: discord.Message):
     await _message_context_menu(interaction, "red", message)
 
 
-# == MESSAGE HANDLING ==
+# == MESSAGE HANDLER ==
 @client.event
 async def on_message(message):
     # Bot should not respond to itself.
@@ -239,4 +241,26 @@ async def respond_to_user(message):
                 random.choice(phrases.compliment_response))
 
 
-client.run(os.getenv('TOKEN'))
+# == ERROR HANDLERS ==
+# Error handler for invalid chat-commands.
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, discord.ext.commands.CommandNotFound):
+        print(f"{ctx.author} triggered the following error: [{error}]")
+        return
+    else:
+        raise error
+
+
+@client.tree.error
+async def on_error(interaction, error):
+    ctx = await build_context(discord, interaction)
+    if isinstance(error, MissingPermissions):
+        print(f"{ctx.author} triggered the following error: [{error}]")
+        await ctx.send(str(error), ephemeral=True)
+        return
+    else:
+        raise error
+
+
+client.run(os.getenv('BOT_TOKEN'))

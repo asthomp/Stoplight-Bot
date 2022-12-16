@@ -2,7 +2,13 @@
 import copy
 
 
-# Receives a message object and sends a response (after checking various parameters).
+# Description: Given an interaction, returns a discord.py context object.
+async def build_context(discord, interaction):
+    context_object = await discord.ext.commands.Context.from_interaction(interaction)
+    return context_object
+
+
+# Description: Receives a message object and sends a response (after checking various parameters).
 async def send_message(message, response, nsfw=False):
     if nsfw and not message.channel.is_nsfw():
         print("ERROR: NSFW content triggered in SFW channel.")
@@ -21,7 +27,7 @@ async def perform_action(channel, target_id, action):
     await channel.send(response)
 
 
-# Checks whether a given message is included in a list of trigger phrases; ignore it if quoted.
+# Description: Checks whether a given message is included in a list of trigger phrases; ignore it if quoted.
 def check_if_message_contains_phrase(message, list_of_phrases):
     for phrase in list_of_phrases:
         if phrase in message.content.lower():
