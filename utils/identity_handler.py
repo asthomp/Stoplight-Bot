@@ -12,6 +12,8 @@ async def reboot_bots(ctx, bot):
     if authorize_user(ctx.message.author):
         await ctx.send(f" :computer:  {bot} is rebooting.")
         os.execv(sys.executable, ['git pull'])
+        print(sys.argv)
+        print(sys.argv[0])
         os.execv(sys.executable, ['python3'] + sys.argv)
     else:
         await ctx.send(
