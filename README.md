@@ -8,15 +8,11 @@ means the conversation should proceed with care. "Red" means that the conversati
 
 ## Origins
 
-The "stoplight system" has its origins in the BDSM, kink and leather communities. Used as "safewords," the system
-allowed partners to quickly communicate their needs during intimacy. This helped improve the physical and
-mental health of all involved parties. In adjacent online communities, the stoplight system has increasingly been used
-to communicate one's boundaries during sensitive discussions - particularly those that might impact a user's mental
-health.
-
-The stoplight system allows users to deepen connections through a mutual respect of eachother's boundaries. Its
-goal is not to prevent free-speech but, rather, to ensure that potentially harmful dialogue is tabled for another venue
-or time. Essentially, it reminds us to be mindful of others around us so that everyone walks away feeling awesome.
+In online communities, the stoplight system has increasingly been used to communicate one's boundaries 
+during sensitive discussions - particularly those that might impact a user's mental health. It allows 
+users to deepen connections through a mutual respect of eachother's boundaries. Its goal is not to prevent 
+free-speech but, rather, to ensure that potentially harmful dialogue is tabled for another venue or time.
+Essentially, it reminds us to be mindful of others around us.
 
 ## Features
 
