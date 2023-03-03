@@ -17,4 +17,5 @@ DS_Store
 /tests/
 
 .env
-/other/
+/dev/
+/dev/

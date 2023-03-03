@@ -1,4 +1,4 @@
-# Description: Based on the total count, converts q unit to its plural form.
+# Based on the total count, converts q unit to its plural form.
 def pluralizer(total_count, unit, plural_suffix):
     if total_count == 1:
         return f"{total_count} {unit}"
@@ -6,7 +6,7 @@ def pluralizer(total_count, unit, plural_suffix):
         return f"{total_count} {unit}{plural_suffix}"
 
 
-# Description: Given an input string representing a color, returns the corresponding RGB integer.
+# Given an input string representing a color, returns the corresponding RGB integer.
 # If a color cannot be detected, returns the Discord default color.
 def colorizer(input_color):
     discord_default_colors = {

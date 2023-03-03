@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 from dotenv import load_dotenv
 
+import discord
 import discord.client
 import discord.types.emoji
 from discord.ext import commands, tasks
 from discord.app_commands import MissingPermissions
-from discord.ext.commands import has_permissions
 
 from setup import personalization as phrases
+from cogs.stoplight import Stoplight
 from utils import command_list as c
 from utils import *
 
@@ -29,7 +30,7 @@ class Bot(commands.Bot):
         intents.messages = True
         intents.message_content = True
 
-        super().__init__(command_prefix=prefixes, intents=intents)
+        super().__init__(command_prefix=prefixes, intents=intents, application_id=int(os.getenv('ID')))
         self.synced = False
 
     async def on_ready(self):
@@ -47,10 +48,13 @@ class Bot(commands.Bot):
         except RuntimeError as err:
             print(f"{self.user} has a running activity cycle.")
 
+        await self.add_cog(Stoplight(self))
+
         print(f'{client.user} just woke up.')
 
 
 client = Bot()
+
 
 
 # == ADMINISTRATIVE FUNCTIONS ==
@@ -76,7 +80,7 @@ async def commands(ctx):
 # This loop randomly selects a status for the bot.
 @tasks.loop(minutes=7)
 async def change_status():
-    await get_random_activity(client, phrases.watching,
+    await get_random_activity(discord, client, phrases.watching,
                               phrases.playing, phrases.listening)
 
 
@@ -92,114 +96,6 @@ async def hug(ctx, *target):
     if user_object:
         await perform_action(ctx.message.channel, user_object.id, "hugs")
 
-
-# == STOPLIGHT FUNCTIONALITY ==
-async def stoplight(ctx, color, flagged_message=None):
-    # Post an announcement to the source channel.
-    emoji = get_emoji(ctx.guild.id, color)
-    alert = get_alert(ctx.guild.id, color)
-    message = get_message(ctx, color)
-
-    user_message = f"{emoji} {alert} {emoji} {message}"
-    if len(user_message) > 0:
-        await ctx.channel.send(user_message)
-
-    # If configured, post a stoplight message to the admin channel.
-    if admin_channel(ctx.guild.id):
-        admin_message = get_admin_message(ctx, color)
-        if len(admin_message) > 0:
-            await ctx.guild.get_channel(get_admin_channel(ctx.guild.id)).send(admin_message)
-
-    # If the user flags a message and an admin channel has been configured, embed the flagged message
-    # in the admin channel.
-    if admin_channel(ctx.guild.id) and flagged_message is not None and ctx.guild.id == flagged_message.guild.id:
-        embed = discord.Embed(title=f"{emoji} Flagged Message")
-        embed.description = flagged_message.content
-        embed.set_author(name=flagged_message.author.display_name,
-                         icon_url=flagged_message.author.display_avatar.url)
-        embed.timestamp = flagged_message.created_at
-        url_view = discord.ui.View()
-        url_view.add_item(
-            discord.ui.Button(label='Go to Message', style=discord.ButtonStyle.url,
-                              url=flagged_message.jump_url))
-
-        await ctx.guild.get_channel(get_admin_channel(ctx.guild.id)).send(embed=embed, view=url_view)
-
-
-async def _text(ctx, color):
-    await stoplight(ctx, color)
-    await ctx.message.delete()
-
-
-async def _slash(interaction, color):
-    ctx = await build_context(discord, interaction)
-    await stoplight(ctx, color)
-    await ctx.send(f"{default_config[color]['emoji']} A {color} stoplight was sent to <#{interaction.channel.id}>.",
-                   ephemeral=True)
-
-
-async def _message_context_menu(interaction, color, flagged_message):
-    ctx = await build_context(discord, interaction)
-    await stoplight(ctx, color, flagged_message)
-    await ctx.send(f"{default_config[color]['emoji']} A {color} stoplight was sent to <#{interaction.channel.id}>.",
-                   ephemeral=True)
-
-
-# == STOPLIGHT (PREFIXED CHAT-COMMANDS) ==
-# Chat commands are sent directly to a channel using a preconfigured prefix, with the default being "stoplight".
-# Once a chat command has been issued, the command message is deleted to preserve a user's anonymity.
-# Note: While hybrid chat & application commands are available, each command is kept separate. If Discord removes
-# support for them altogether, this simplifies removal.
-@client.command(pass_context=True)
-@has_permissions(send_messages=True)
-async def green(ctx):
-    await _text(ctx, "green")
-
-
-@client.command(pass_context=True)
-@has_permissions(send_messages=True)
-async def yellow(ctx):
-    await _text(ctx, "yellow")
-
-
-@client.command(pass_context=True)
-@has_permissions(send_messages=True)
-async def red(ctx):
-    await _text(ctx, "red")
-
-
-# == STOPLIGHT (/SLASH APPLICATION COMMANDS) ==
-# /Slash application commands are invoked by typing "/" in the message text-box of a given channel.
-@client.tree.command(name='green', description="🟢 Green means you\'re good to continue the conversation.")
-async def _green(interaction: discord.Interaction):
-    await _slash(interaction, "green")
-
-
-@client.tree.command(name='yellow', description="🟡 Yellow means the conversation should proceed with caution.")
-async def _yellow(interaction: discord.Interaction):
-    await _slash(interaction, "yellow")
-
-
-@client.tree.command(name='red', description="🔴 Red means the conversation should stop.")
-async def _red(interaction: discord.Interaction):
-    await _slash(interaction, "red")
-
-
-# == STOPLIGHT (CONTEXT-MENU APPLICATION COMMANDS) ==
-# Context-menu application commands can be invoked by right-clicking on a given message.
-@client.tree.context_menu(name='🟢 Green Stoplight')
-async def __green(interaction: discord.Interaction, message: discord.Message):
-    await _message_context_menu(interaction, "green", message)
-
-
-@client.tree.context_menu(name='🟡 Yellow Stoplight')
-async def __yellow(interaction: discord.Interaction, message: discord.Message):
-    await _message_context_menu(interaction, "yellow", message)
-
-
-@client.tree.context_menu(name='🔴 Red Stoplight')
-async def __red(interaction: discord.Interaction, message: discord.Message):
-    await _message_context_menu(interaction, "red", message)
 
 
 # == MESSAGE HANDLER ==
@@ -264,4 +160,4 @@ async def on_error(interaction, error):
         raise error
 
 
-client.run(os.getenv('TOKEN'))
+client.run(os.getenv('DEV_TEST_BOT_TOKEN'))

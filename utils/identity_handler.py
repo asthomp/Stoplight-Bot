@@ -1,13 +1,15 @@
 # == IDENTITY HANDLER ==
-# Descriptions: Functions that handle manage users, permissions and moderation.
+# Functions that handle manage users, permissions and moderation.
 import os
 import random
 import sys
 import subprocess
 
+DEV_ID = 403657716129857577
+
 
 # == BOT MANAGEMENT ==
-# Description: Reboots a given bot when prompted by an authorized user.
+# Reboots a given bot when prompted by an authorized user.
 async def reboot_bots(ctx, bot):
     bot = bot.capitalize()
     if authorize_user(ctx.message.author):
@@ -22,12 +24,12 @@ async def reboot_bots(ctx, bot):
 
 
 # == USER MANAGEMENT ==
-# Description: Given a context, returns the display_name of a random guild member.
+# Given a context, returns the display_name of a random guild member.
 def random_user(ctx):
     return random.choice([member.display_name for member in ctx.guild.members])
 
 
-# Description: Given a context and a user's name (or <@ID>>), searches for a guild member object.
+# Given a context and a user's name (or <@ID>>), searches for a guild member object.
 def find_user(ctx, target):
     # The target should always be compared as a string.
     target = str(target)
@@ -48,16 +50,15 @@ def find_user(ctx, target):
 
 
 # == PERMISSIONS ==
-# Description: Given a user object, returns true if the user is an administrator (or the developer).
+# Given a user object, returns true if the user is an administrator (or the developer).
 def authorize_user(user):
-    if user.id == int(os.getenv('DEV_ID')) or user.guild_permissions.administrator:
+    if user.id == DEV_ID or user.guild_permissions.administrator:
         return True
     else:
         return False
 
 
-# Description: These functions check whether-or-not a user has various
-# permissions by performing bitwise operations.
+# These functions check whether-or-not a user has various permissions by performing bitwise operations.
 def can_kick(permissions):
     return bool(permissions.value & (1 << 1))
 

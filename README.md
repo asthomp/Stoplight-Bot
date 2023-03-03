@@ -8,27 +8,26 @@ means the conversation should proceed with care. "Red" means that the conversati
 
 ## Origins
 
-The "stoplight system" has its origins in the BDSM, kink and leather communities. Used as "safewords," the system
-allowed partners to quickly communicate their needs during intimacy. This helped improve the physical and
-mental health of all involved parties. In adjacent online communities, the stoplight system has increasingly been used
-to communicate one's boundaries during sensitive discussions - particularly those that might impact a user's mental
-health.
+The "stoplight system" is familiar to a lot of people. As kids, we're taught through games that "Red means stop!" and
+"Green means go!" It's a simple, familiar, and straightforward system to flag "stop-slow-go." In some online communities, 
+the system has increasingly been used to communicate one's boundaries during sensitive discussions - particularly those 
+that might impact a user's mental health.
 
-The stoplight system allows users to deepen connections through a mutual respect of eachother's boundaries. Its
+The stoplight system helps users to deepen connections through a mutual respect of eachother's boundaries. Its
 goal is not to prevent free-speech but, rather, to ensure that potentially harmful dialogue is tabled for another venue
 or time. Essentially, it reminds us to be mindful of others around us so that everyone walks away feeling awesome.
 
 ## Features
 
 Stoplight-Bot posts an anonymous announcement to the channel flagged by the command. If configured, it can
-also simultaneously post a message to an administrative channel, tagging moderators and alerting them to  
-potentially inflammatory discussions. There are three ways to issue a stoplight command: posting a text-based
+also simultaneously post a message to an administrative channel, tagging moderators and alerting them to potentially 
+inflammatory discussions. There are three ways to issue a stoplight command: posting a text-based
 chat command directly to the channel, using a `/` application command, or accessing a message's context menu.
 
 ### Chat Commands
 
 > Users can issue stoplight commands by posting the command directly to a channel.
-> The default prefix for stoplight chat commands is `stoplight`.
+> The default prefix for stoplight chat commands is `stoplight`
 >
 > - `stoplight green` signals that a user is good-to-go
 >
@@ -122,8 +121,6 @@ requirements listed in `requirements.txt`.
 
 You'll need to be able to install [Discord.py version 2.1.0](https://pypi.org/project/discord.py/) for the project to run.
 
-
-
 ### Setup Bot Credentials
 
 This step assumes that you've created a bot and know its ID and token, which can be found in
@@ -161,9 +158,8 @@ This file stores data about your guild and customizes the posts that Stoplight-B
 message in the same channel as the source command. It can also be configured to send an additional message to a
 private channel used by moderators.
 
-You can customize the sample labeled `Better Than Chuck` or add a new entry. **Be mindful of the quotes!!** Discord
-resource IDs (ex: emoji ids, user ids, channel ids) should not
-have quotes!
+You can customize the samples or add a new entry. **Be mindful of the quotes!!** Discord
+resource IDs (ex: emoji ids, user ids, channel ids) should not have quotes!
 
 Let's walk through editing the configuration file.
 
@@ -228,7 +224,7 @@ posted to the channel specified in `admin_channel`. All messages should be forma
 You *can* use `None` in lieu of an alert, emoji, or admin message but the actual message must contain *at
 least* one character.
 
-You can also use the following placeholders other Discord resources:
+You can also use the following placeholders to reference other Discord resources:
 
 ```
     @USER will link to the message's original author.
@@ -242,9 +238,7 @@ If you don't want to customize the messages, the bot will automatically use a de
 ### Personalization
 
 Next, open `personalization.py` and skim through its contents. This file lets you personalize the bot and turn them into
-a "character" that matches the theme of your Discord Guild. This is a sample where the bot has been skinned to be
-Rowena from the CW's Supernatural. You can also look at `personalization_GENERIC_SAMPLE.py`, which provides a more
-generic version of the bot. Whichever one you choose, after editing it, the settings you want to use should be
+a "character" that matches the theme of your Discord Guild. After editing it, the settings you want to use should be
 stored in `personalization.py`.
 
 ### Review Setup

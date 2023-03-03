@@ -1,4 +1,4 @@
-# Description: Returns a formatted list of the bot's commands and/or instructions to use them.
+# Returns a formatted list of the bot's commands and/or instructions to use them.
 # Customize using f-strings.
 def command_list(ctx, admin, bot_name):
     user_commands = f"\n\t🟢\t 🟡\t🔴\n\n" \

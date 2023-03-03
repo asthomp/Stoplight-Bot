@@ -18,7 +18,7 @@ default_config = {"green": {"emoji": f"🟢",
                   }
 
 
-# Description: Returns a message from the guild's entry in the setup/config file.
+# Returns a message from the guild's entry in the setup/config file.
 # If there isn't one, returns the default message.
 def get_message(ctx, color):
     if config_exists(ctx.guild.id, color, "message"):
@@ -27,7 +27,7 @@ def get_message(ctx, color):
         return default_config[color]["message"]
 
 
-# Description: Returns an admin message from the guild's entry in the setup/config file.
+# Returns an admin message from the guild's entry in the setup/config file.
 # If there isn't one, returns an empty string.
 def get_admin_message(ctx, color):
     if admin_channel(ctx.guild.id) and config_exists(ctx.guild.id, color, "admin_message"):
@@ -36,7 +36,7 @@ def get_admin_message(ctx, color):
         return ""
 
 
-# Description: Returns a customized emoji from the guild's entry in the setup/config file.
+# Returns a customized emoji from the guild's entry in the setup/config file.
 # If there isn't one, returns the default emoji.
 def get_emoji(guild_id, color):
     if guild_id in c.keys() and c[guild_id][color]["emoji"] is not None:
@@ -45,7 +45,7 @@ def get_emoji(guild_id, color):
         return default_config[color]["emoji"]
 
 
-# Description: Returns the customized alert from the guild's entry in the setup/config file.
+# Returns the customized alert from the guild's entry in the setup/config file.
 # If there isn't one, returns the default alert.
 def get_alert(guild_id, color):
     if guild_id in c.keys() and c[guild_id][color]["alert"] is not None:
@@ -54,18 +54,18 @@ def get_alert(guild_id, color):
         return default_config[color]["alert"]
 
 
-# Description: Given a guild ID, checks whether-or-not a guild has a preconfigured asset for a given color.
+# Given a guild ID, checks whether-or-not a guild has a preconfigured asset for a given color.
 def config_exists(guild_id, color, asset):
     return guild_id in c.keys() and color in c[guild_id].keys() and asset in c[guild_id][color].keys() \
            and c[guild_id][color][asset] is not None
 
 
-# Description: Given a guild ID, checks whether-or-not an admin channel is configured.
+# Given a guild ID, checks whether-or-not an admin channel is configured.
 def admin_channel(guild_id):
     return guild_id in c.keys() and "admin_channel" in c[guild_id].keys() and c[guild_id]["admin_channel"] is not None
 
 
-# Description: Given a guild ID, returns a preconfigured admin channel, if possible.
+# Given a guild ID, returns a preconfigured admin channel, if possible.
 def get_admin_channel(guild_id):
     if admin_channel(guild_id):
         return c[guild_id]["admin_channel"]
@@ -73,7 +73,7 @@ def get_admin_channel(guild_id):
         return None
 
 
-# Description: Given a guild ID, checks whether-or-not moderators can be tagged in the preconfigured admin channel.
+# Given a guild ID, checks whether-or-not moderators can be tagged in the preconfigured admin channel.
 def moderator_role(guild_id):
     return guild_id in c.keys() and "admin_channel" in c[guild_id].keys() and c[guild_id]["admin_channel"] is not None \
            and "moderator_role" in c[guild_id].keys() and c[guild_id]["moderator_role"] is not None
