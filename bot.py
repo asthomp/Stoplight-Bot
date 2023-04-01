@@ -56,7 +56,6 @@ class Bot(commands.Bot):
 client = Bot()
 
 
-
 # == ADMINISTRATIVE FUNCTIONS ==
 # This command pings the bot to confirm that it's online.
 @client.command(no_pm=True)
@@ -95,7 +94,6 @@ async def hug(ctx, *target):
     user_object = find_user(ctx, target)
     if user_object:
         await perform_action(ctx.message.channel, user_object.id, "hugs")
-
 
 
 # == MESSAGE HANDLER ==
@@ -160,4 +158,4 @@ async def on_error(interaction, error):
         raise error
 
 
-client.run(os.getenv('DEV_TEST_BOT_TOKEN'))
+client.run(os.getenv('TOKEN'))

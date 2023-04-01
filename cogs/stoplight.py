@@ -7,9 +7,19 @@ from utils import admin_channel, get_admin_channel, get_admin_message, get_messa
 
 
 class Stoplight(commands.Cog):
+    # Constructor - builds the Cog and registers commands.
     def __init__(self, bot):
+        self.context_menu_commands = None
         self.bot = bot
         self.flagged_message = None
+        # Register all context-menu commands.
+        for command in self.build_context_menu_commands():
+            self.bot.tree.add_command(command)
+
+    # Destructor - removes manually-registered context-menu application commands when the cog is unloaded.
+    async def cog_unload(self) -> None:
+        for command in self.build_context_menu_commands():
+            self.bot.tree.remove_command(command.name, type=command.type)
 
     # == STOPLIGHT FUNCTIONALITY ==
     @staticmethod
@@ -94,15 +104,27 @@ class Stoplight(commands.Cog):
         await self._slash(interaction, "red")
 
     # == STOPLIGHT (CONTEXT-MENU APPLICATION COMMANDS) ==
+    # Context-Menu Application Commands do not work with decorators; this function defines them.
+    # The commands are registered in the Cog constructor.
+    def build_context_menu_commands(self):
+        return [
+            app_commands.ContextMenu(
+                name='🟢 Green Stoplight',
+                callback=self.__green),
+            app_commands.ContextMenu(
+                name='🟡 Yellow Stoplight',
+                callback=self.__yellow),
+            app_commands.ContextMenu(
+                name='🔴 Red Stoplight',
+                callback=self.__red)
+        ]
+
     # Context-menu application commands can be invoked by right-clicking on a given message.
-    @app_commands.context_menu(name='🟢 Green Stoplight')
     async def __green(self, interaction: discord.Interaction, message: discord.Message) -> None:
         await self._message_context_menu(interaction, "green", message)
 
-    @app_commands.context_menu(name='🟡 Yellow Stoplight')
     async def __yellow(self, interaction: discord.Interaction, message: discord.Message) -> None:
         await self._message_context_menu(interaction, "yellow", message)
 
-    @app_commands.context_menu(name='🔴 Red Stoplight')
     async def __red(self, interaction: discord.Interaction, message: discord.Message) -> None:
         await self._message_context_menu(interaction, "red", message)
