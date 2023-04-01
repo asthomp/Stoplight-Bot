@@ -1,5 +1,11 @@
 # Stoplight-Bot
 
+## Recent Updates (4/1)
+
+Context-Menu Application-Commands were no longer working because, when defined in a Cog, they cannot use 
+decorators. I could have sworn it worked before but that may have been... luck. Regardless, it should work 
+now! You can read more about it here: https://github.com/Rapptz/discord.py/issues/7823#issuecomment-1086830458
+
 ## Introduction
 
 Stoplight-Bot is a Discord bot that uses the "stoplight system" to facilitate anonymously expressing
